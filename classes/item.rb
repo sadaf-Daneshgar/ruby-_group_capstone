@@ -1,9 +1,10 @@
+require 'date'
 class Item
   attr_reader :id, :publish_date
 
-  def initialize(_publish_date, archived: true)
+  def initialize(publish_date, archived: true)
     @id = Random.rand(1..1000)
-    @publish_date = publish_date
+    @publish_date = Date.parse(publish_date)
     @archived = archived
   end
 
@@ -33,9 +34,8 @@ class Item
     @archived = true
   end
 
-  private
-
   def can_be_archived?
-    publish_date < 10.years.ago
+    ten_years_ago = Date.today - 10 * 365
+    publish_date < ten_years_ago
   end
 end
