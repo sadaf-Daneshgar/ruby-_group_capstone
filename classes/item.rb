@@ -1,16 +1,31 @@
+require 'date'
 class Item
-  attr_accessor :label, :publish_date, :archived
-  attr_reader :id
+  attr_reader :id, :publish_date
 
-  def initialize(params = {})
-    # the constractor method is called a hash because it takes more than 5 arguments
-    @genre = params[:genre]
-    @author = params[:author]
-    @source = params[:source]
-    @label = params[:label]
-    @publish_date = params[:publish_date]
-    @archived = params[:archived] || false
+  def initialize(publish_date, archived: true)
     @id = Random.rand(1..1000)
+    @publish_date = Date.parse(publish_date)
+    @archived = archived
+  end
+
+  def genre=(genre)
+    @genre = genre
+    genre.add_item(self) unless genre.items.include?(self)
+  end
+
+  def author=(author)
+    @author = author
+    author.add_item(self) unless author.items.include?(self)
+  end
+
+  def source=(source)
+    @source = source
+    source.add_item(self) unless source.items.include?(self)
+  end
+
+  def label=(label)
+    @label = label
+    label.add_item(self) unless label.items.include?(self)
   end
 
   def move_to_archive
@@ -19,14 +34,7 @@ class Item
     @archived = true
   end
 
-  # method to add a label to an item
-  def add_label(label)
-    Label.new(label)
-  end
-
-  private
-
   def can_be_archived?
-    publish_date < 10.years.ago
+    Date.today.year - @publish_date.year > 10
   end
 end
