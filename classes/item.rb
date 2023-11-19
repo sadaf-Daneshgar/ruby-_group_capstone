@@ -35,7 +35,7 @@ class Item
   end
 
   def can_be_archived?
-    ten_years_ago = Date.today - 10 * 365
+    ten_years_ago = Date.today - (10 * 365)
     publish_date < ten_years_ago
   end
 end
