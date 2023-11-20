@@ -4,6 +4,7 @@ def main
   puts '----------------------------------------'
 
   app = App.new
+  app.load_data
   loop do
     puts 'Please select an option by entering a number:'
     puts '1. List all books'
@@ -16,7 +17,7 @@ def main
     puts '8. Add a music album'
     puts '9. Add a game'
     puts '10. Add an author'
-    puts '11. Exit'
+    puts '11. Save and Exit'
 
     options = gets.chomp.to_i
 
@@ -42,7 +43,7 @@ def main
     when 10
       app.add_author
     when 11
-      puts 'Thanks for using Catalog of my things app!'
+      app.save_data
       break
     else
       puts 'Invalid option. Please try again.'
