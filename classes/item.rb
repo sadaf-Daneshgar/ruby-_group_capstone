@@ -5,7 +5,7 @@ class Item
   attr_reader :id
 
   def initialize(publish_date, archived: false)
-    @id = SecureRandom.uuid
+    @id = Random.rand(1..100)
     @genres = []
     @authors = []
     @labels = []
