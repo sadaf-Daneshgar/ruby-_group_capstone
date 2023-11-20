@@ -1,10 +1,12 @@
 require_relative 'app'
+
 def main
   puts 'Welcome to the Catalog of my things App!'
   puts '----------------------------------------'
 
   app = App.new
   app.load_data
+
   loop do
     puts 'Please select an option by entering a number:'
     puts '1. List all books'
@@ -25,19 +27,19 @@ def main
     when 1
       puts 'List of all books'
     when 2
-      puts 'List of all music albums'
+      app.list_music_albums
     when 3
       app.list_games
     when 4
       puts 'List of all labels'
     when 5
-      puts 'List of all genres'
+      app.list_genres
     when 6
       app.list_authors
     when 7
       puts 'Add a book'
     when 8
-      puts 'Add a music album'
+      app.add_music_album
     when 9
       app.add_game
     when 10
