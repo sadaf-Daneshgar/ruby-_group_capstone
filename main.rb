@@ -6,6 +6,7 @@ def main
 
   app = App.new
   refactor = Refactor.new(app)
+  app.load_data
   loop do
     puts 'Please select an option by entering a number:'
     puts '     1. 📖  List all books'
@@ -44,7 +45,7 @@ def main
     when 10
       app.add_author
     when 11
-      puts 'Thanks for using Catalog of my things app!'
+      app.save_data
       break
     else
       puts 'Invalid option. Please try again.'
