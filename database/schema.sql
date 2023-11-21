@@ -26,3 +26,17 @@ CREATE TABLE book(
     item_id INTEGER,
     FOREIGN KEY(item_id) REFERENCES items(id)
 );
+
+CREATE TABLE author(
+    id SERIAL PRIMARY KEY,
+    first_name VARCHAR(100),
+    last_name VARCHAR(100),
+);
+
+CREATE TABLE game(
+    id INTEGER PRIMARY KEY,
+    multiplayer BOOLEAN,
+    last_played_at DATE,
+    item_id INTEGER,
+    FOREIGN KEY(item_id) REFERENCES items(id)
+);
