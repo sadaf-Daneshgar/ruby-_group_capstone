@@ -8,7 +8,6 @@ class Item
     @id = Random.rand(1..1000)
     @genres = []
     @authors = []
-    @labels = []
     @source = []
     @publish_date = Date.parse(publish_date)
     @archived = archived
