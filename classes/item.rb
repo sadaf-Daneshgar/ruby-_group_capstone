@@ -13,11 +13,8 @@ class Item
     @archived = archived
   end
 
-  def add_label(label)
-    return if @labels.include?(label)
-
-    @labels << label
-    label.add_item(self)
+  def label=(label)
+    @labels << label unless @labels.include?(label)
   end
 
   def move_to_archive
