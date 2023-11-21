@@ -7,7 +7,6 @@ def main
   app = App.new
   refactor = Refactor.new(app)
   app.load_data
-
   loop do
     puts 'Please select an option by entering a number:'
     puts '     1. 📖  List all books'
@@ -28,19 +27,19 @@ def main
     when 1
       app.list_all_books
     when 2
-      app.list_music_albums
+      puts 'List of all music albums'
     when 3
       app.list_games
     when 4
       app.list_all_labels
     when 5
-      app.list_genres
+      puts 'List of all genres'
     when 6
       app.list_authors
     when 7
       refactor.add_book
     when 8
-      app.add_music_album
+      puts 'Add a music album'
     when 9
       app.add_game
     when 10
