@@ -7,15 +7,15 @@ require_relative 'classes/label'
 require 'json'
 
 class App
-  attr_accessor :games, :authors, :books, :labels, :music_albums, :genres
+  attr_accessor :game, :author, :books, :labels, :music_albums, :genres
 
   def initialize
     @games = []
     @authors = []
-    @music_albums = []
-    @genres = []
     @labels = []
     @books = []
+    @music_albums = []
+    @genres = []
   end
 
   def add_label(title, color)
@@ -100,6 +100,23 @@ class App
     puts 'The Game is added successfully/n'
   end
 
+  def list_games
+    puts 'No game added' if @games.empty?
+    @games.each_with_index do |game, index|
+      print "Game #{index + 1} - "
+      print "Publish Date: #{game.publish_date}, "
+      print "Multiplayer: #{game.multiplayer}, "
+      print "Last Played at: #{game.last_played_at}\n"
+    end
+  end
+
+  def list_authors
+    puts 'No author added' if @authors.empty?
+    @authors.each_with_index do |author, index|
+      puts "Author #{index + 1} - Fullname: #{author.first_name} #{author.last_name}"
+    end
+  end
+
   def add_music_album
     puts 'Please add a music album'
     print 'Is the album on Spotify? [Y/N]: '
@@ -114,28 +131,11 @@ class App
     puts 'The Music Album is added successfully'
   end
 
-  def list_games
-    puts 'No game added' if @games.empty?
-    @games.each_with_index do |game, index|
-      print "Game #{index + 1} - "
-      print "Publish Date: #{game.publish_date}, "
-      print "Multiplayer: #{game.multiplayer}, "
-      print "Last Played at: #{game.last_played_at}\n"
-    end
-  end
-
   def list_music_albums
     puts 'No music albums added' if @music_albums.empty?
     @music_albums.each do |music_album|
       puts "ID: #{music_album.id}, Genre: #{music_album.genre.name}, On Spotify: #{music_album.on_spotify}, Published Date: #{music_album.publish_date}"
       puts '-------------------------'
-    end
-  end
-
-  def list_authors
-    puts 'No author added' if @authors.empty?
-    @authors.each_with_index do |author, index|
-      puts "Author #{index + 1} - Fullname: #{author.first_name} #{author.last_name}"
     end
   end
 
@@ -166,9 +166,9 @@ class App
   def load_authors
     if File.exist?('data/author.json')
       data = JSON.parse(File.read('data/author.json'))
-      self.authors = data.map { |author| Author.new(author['first_name'], author['last_name']) }
+      @authors = data.map { |author| Author.new(author['first_name'], author['last_name']) }
     else
-      self.authors = []
+      []
     end
   end
 
@@ -203,15 +203,6 @@ class App
     new_id
   end
 
-  def load_games
-    if File.exist?('data/game.json')
-      data = JSON.parse(File.read('data/game.json'))
-      self.games = data.map { |game| Game.new(game['publish_date'], game['multiplayer'], game['last_played_at']) }
-    else
-      self.games = []
-    end
-  end
-
   def save_games
     File.open('data/game.json', 'w') do |file|
       data = @games.map do |game|
@@ -222,6 +213,15 @@ class App
         }
       end
       file.write(JSON.generate(data))
+    end
+  end
+
+  def load_games
+    if File.exist?('data/game.json')
+      data = JSON.parse(File.read('data/game.json'))
+      @games = data.map { |game| Game.new(game['publish_date'], game['multiplayer'], game['last_played_at']) }
+    else
+      []
     end
   end
 
