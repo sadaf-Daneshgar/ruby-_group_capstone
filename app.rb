@@ -2,16 +2,20 @@ require_relative 'classes/game'
 require_relative 'classes/author'
 require_relative 'classes/book'
 require_relative 'classes/label'
+require_relative 'classes/music'
+require_relative 'classes/genre'
 require 'json'
 
 class App
-  attr_accessor :game, :author, :books, :labels
+  attr_accessor :games, :authors, :labels, :books, :music_albums, :genres
 
   def initialize
     @games = []
     @authors = []
     @labels = []
     @books = []
+    @music_albums = []
+    @genres = []
   end
 
   def add_label(title, color)
@@ -59,7 +63,7 @@ class App
   end
 
   def ask_multiplayer
-    print 'Isthe game multiplayer [Y/N] : '
+    print 'Is the game multiplayer [Y/N] : '
     loop do
       input = gets.chomp.downcase
       case input
@@ -93,7 +97,7 @@ class App
     last_time = gets.chomp
     game = Game.new(publish_date, multiplayer, last_time)
     @games << game
-    puts 'The Game is added sucessfully/n'
+    puts 'The Game is added successfully'
   end
 
   def list_games
@@ -113,11 +117,44 @@ class App
     end
   end
 
+  def add_music_album
+    puts 'Please add a music album'
+    print 'Enter the genre of the music album: '
+    genre_name = gets.chomp
+    genre = find_or_create_genre(genre_name)
+    on_spotify = ask_spotify
+    print 'Add the publish date of your music album [yyyy/mm/dd] : '
+    publish_date = gets.chomp
+    music_album = MusicAlbum.new(genre, on_spotify, publish_date)
+    @music_albums << music_album
+    puts 'The Music Album is added successfully ✅🎵'
+    puts '--------------------------------------'
+    puts ' '
+  end  
+
+  def list_all_music_albums
+    puts 'List of all music albums:'
+    @music_albums.each do |music_album|
+      puts "ID: #{music_album.id}, Genre: #{music_album.genre.name}, On Spotify: #{music_album.on_spotify}, Published Date: #{music_album.publish_date}"
+      puts '-------------------------'
+    end
+  end
+  
+  def list_all_genres
+    puts 'List all genres:'
+    @genres.each do |genre|
+      puts "#{genre.name}"
+      puts '............'
+    end
+  end  
+
   def save_data
     save_games
     save_authors
     save_books
     save_labels
+    save_music_albums
+    save_genres
   end
 
   def load_data
@@ -125,11 +162,12 @@ class App
     load_authors
     load_books
     load_labels
+    load_music_albums
+    load_genres
   end
 
   private
 
-  # methods to save and load data from json files to store data after closing the app for books and labels
   def load_books
     if File.exist?('data/book.json')
       data = JSON.parse(File.read('data/book.json'))
@@ -143,6 +181,7 @@ class App
     File.open('data/book.json', 'w') do |file|
       data = @books.map do |book|
         {
+          'id' => book.id,
           'publish_date' => book.publish_date,
           'publisher' => book.publisher,
           'cover_state' => book.cover_state
@@ -215,4 +254,88 @@ class App
       []
     end
   end
+
+  def load_music_albums
+    if File.exist?('data/music.json')
+      data = JSON.parse(File.read('data/music.json'))
+      @music_albums = data.map do |music_data|
+        genre_name = music_data['genre'] && music_data['genre']['name']
+        genre = find_or_create_genre(genre_name)
+        MusicAlbum.new(genre, music_data['on_spotify'], music_data['published_date'])
+      end
+    else
+      []
+    end
+  end
+
+  def save_music_albums
+    File.open('data/music.json', 'w') do |file|
+      data = @music_albums.map do |music_album|
+        {
+          'id' => music_album.id,
+          'on_spotify' => music_album.on_spotify,
+          'genre' => music_album.genre ? { 'id' => music_album.genre.id, 'name' => music_album.genre.name } : nil,
+          'published_date' => music_album.publish_date
+        }
+      end
+      file.write(JSON.generate(data))
+    end
+  end
+  
+
+  def load_genres
+    if File.exist?('data/genre.json')
+      data = JSON.parse(File.read('data/genre.json'))
+      @genres = data.map { |genre_data| Genre.new(genre_data['name']) }
+  
+      @music_albums.each do |music_album|
+        genre_name = music_album.genre.name
+        loaded_genre = @genres.find { |genre| genre.name == genre_name }
+        music_album.genre = loaded_genre if loaded_genre
+      end
+    else
+      []
+    end
+  end
+
+  def save_genres
+    File.open('data/genre.json', 'w') do |file|
+      data = @genres.map do |genre|
+        {
+          'id' => genre.id,
+          'name' => genre.name
+        }
+      end
+      file.write(JSON.generate(data))
+    end
+  end
+
+  def find_or_create_genre(name)
+    existing_genre = @genres.find { |genre| genre.name == name }
+    return existing_genre if existing_genre
+
+    genre = Genre.new(name)
+    @genres << genre
+    genre
+  end
+
+  def ask_spotify
+    print 'Is the music album on Spotify? [Y/N]: '
+    loop do
+      input = gets.chomp.downcase
+      case input
+      when 'y'
+        return true
+      when 'n'
+        return false
+      else
+        print 'Please enter a valid input "Y" or "N" :'
+      end
+    end
+  end
 end
+
+app = App.new
+app.load_data
+
+app.save_data
