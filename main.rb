@@ -1,12 +1,15 @@
 require_relative 'app'
 require_relative 'refactor'
+
 def main
   puts 'Welcome to the Catalog of my things App!'
   puts '----------------------------------------'
 
   app = App.new
   refactor = Refactor.new(app)
+
   app.load_data
+
   loop do
     puts 'Please select an option by entering a number:'
     puts '     1. 📖  List all books'
@@ -27,19 +30,19 @@ def main
     when 1
       app.list_all_books
     when 2
-      puts 'List of all music albums'
+      app.list_all_music_albums
     when 3
       app.list_games
     when 4
       app.list_all_labels
     when 5
-      puts 'List of all genres'
+      app.list_all_genres
     when 6
       app.list_authors
     when 7
       refactor.add_book
     when 8
-      puts 'Add a music album'
+      app.add_music_album
     when 9
       app.add_game
     when 10
