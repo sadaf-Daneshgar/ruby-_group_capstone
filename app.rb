@@ -135,7 +135,7 @@ class App
   def list_all_music_albums
     puts 'List of all music albums:'
     @music_albums.each do |music_album|
-      puts "ID: #{music_album.id}, Genre: #{music_album.genre.name}, On Spotify: #{music_album.on_spotify}, Published Date: #{music_album.publish_date}"
+      puts "ID: #{music_album.id}, Genre: #{music_album.genre.name}, On Spotify: #{music_album.can_be_archived?}, Published Date: #{music_album.publish_date}"
       puts '-------------------------'
     end
   end
