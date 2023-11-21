@@ -1,18 +1,14 @@
+# app.rb
 require_relative 'classes/game'
 require_relative 'classes/author'
 require_relative 'classes/music'
 require_relative 'classes/genre'
-require 'json'
-
-class App
-  attr_accessor :games, :authors, :music_albums, :genres
-
 require_relative 'classes/book'
 require_relative 'classes/label'
 require 'json'
 
 class App
-  attr_accessor :game, :author, :books, :labels
+  attr_accessor :games, :authors, :music_albums, :genres, :labels, :books
 
   def initialize
     @games = []
@@ -89,7 +85,7 @@ class App
     print 'Enter the last name of the author : '
     last_name = gets.chomp
     author = Author.new(first_name, last_name)
-    authors << author
+    @authors << author
     puts 'Author is added successfully'
   end
 
@@ -101,7 +97,7 @@ class App
     print 'Last the game was played [yyyy/mm/dd] : '
     last_time = gets.chomp
     game = Game.new(publish_date, multiplayer, last_time)
-    games << game
+    @games << game
     puts 'The Game is added successfully'
   end
 
@@ -115,13 +111,13 @@ class App
     print 'Add the publish date of your album [yyyy/mm/dd] : '
     publish_date = gets.chomp
     music_album = MusicAlbum.new(publish_date, on_spotify: on_spotify, genre: genre)
-    music_albums << music_album
+    @music_albums << music_album
     puts 'The Music Album is added successfully'
   end
 
   def list_games
-    puts 'No game added' if games.empty?
-    games.each_with_index do |game, index|
+    puts 'No game added' if @games.empty?
+    @games.each_with_index do |game, index|
       print "Game #{index + 1} - "
       print "Publish Date: #{game.publish_date}, "
       print "Multiplayer: #{game.multiplayer}, "
@@ -130,23 +126,23 @@ class App
   end
 
   def list_music_albums
-    puts 'No music albums added' if music_albums.empty?
-    music_albums.each do |music_album|
+    puts 'No music albums added' if @music_albums.empty?
+    @music_albums.each do |music_album|
       puts "ID: #{music_album.id}, Genre: #{music_album.genre.name}, On Spotify: #{music_album.on_spotify}, Published Date: #{music_album.publish_date}"
       puts '-------------------------'
     end
   end
 
   def list_authors
-    puts 'No author added' if authors.empty?
-    authors.each_with_index do |author, index|
+    puts 'No author added' if @authors.empty?
+    @authors.each_with_index do |author, index|
       puts "Author #{index + 1} - Fullname: #{author.first_name} #{author.last_name}"
     end
   end
 
   def list_genres
-    puts 'No genres added' if genres.empty?
-    genres.each do |genre|
+    puts 'No genres added' if @genres.empty?
+    @genres.each do |genre|
       puts genre.name
       puts '............'
     end
@@ -194,12 +190,12 @@ class App
     return existing_genre if existing_genre
 
     new_genre = Genre.new(generate_genre_id, name)
-    genres << new_genre
+    @genres << new_genre
     new_genre
   end
 
   def generate_genre_id
-    existing_ids = genres.map(&:id)
+    existing_ids = @genres.map(&:id)
     new_id = nil
     loop do
       new_id = rand(1..1000)
@@ -219,7 +215,7 @@ class App
 
   def save_games
     File.open('data/game.json', 'w') do |file|
-      data = games.map do |game|
+      data = @games.map do |game|
         {
           'publish_date' => game.publish_date,
           'multiplayer' => game.multiplayer,
@@ -245,7 +241,7 @@ class App
 
   def save_music_albums
     File.open('data/album.json', 'w') do |file|
-      data = music_albums.map do |music_album|
+      data = @music_albums.map do |music_album|
         {
           'id' => music_album.id,
           'on_spotify' => music_album.on_spotify,
@@ -271,7 +267,7 @@ class App
 
   def save_genres
     File.open('data/genre.json', 'w') do |file|
-      data = genres.map do |genre|
+      data = @genres.map do |genre|
         {
           'id' => genre.id,
           'name' => genre.name
