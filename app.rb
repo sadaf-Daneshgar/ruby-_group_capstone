@@ -1,4 +1,3 @@
-# app.rb
 require_relative 'classes/game'
 require_relative 'classes/author'
 require_relative 'classes/music'
@@ -8,7 +7,7 @@ require_relative 'classes/label'
 require 'json'
 
 class App
-  attr_accessor :games, :authors, :music_albums, :genres, :labels, :books
+  attr_accessor :games, :authors, :books, :labels, :music_albums, :genres
 
   def initialize
     @games = []
@@ -98,7 +97,7 @@ class App
     last_time = gets.chomp
     game = Game.new(publish_date, multiplayer, last_time)
     @games << game
-    puts 'The Game is added successfully'
+    puts 'The Game is added successfully/n'
   end
 
   def add_music_album
