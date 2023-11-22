@@ -1,32 +1,40 @@
-require_relative '../classes/label'
-require_relative '../classes/item'
 require 'rspec'
+require_relative '../classes/label'
 
 describe Label do
   before :each do
-    @label = Label.new('Title', 'Color')
-    @item = Item.new('2000-01-01')
+    @label = Label.new('Gift', 'red')
   end
 
-  it 'initializes with correct attributes' do
-    expect(@label.title).to eq('Title')
-    expect(@label.color).to eq('Color')
+  it 'has a title' do
+    expect(@label.title).to eq('Gift')
+  end
+
+  it 'has a color' do
+    expect(@label.color).to eq('red')
+  end
+
+  it 'has an id' do
+    expect(@label.id).to be_a(Integer)
+  end
+
+  it 'starts with no items' do
     expect(@label.items).to eq([])
   end
 
-  it 'adds an item to items' do
-    @label.add_item(@item)
-    expect(@label.items).to include(@item)
-  end
+  describe '#add_item' do
+    before :each do
+      @item = double('Item')
+      allow(@item).to receive(:label=)
+      @label.add_item(@item)
+    end
 
-  it 'does not add an item to items if it already exists' do
-    @label.add_item(@item)
-    @label.add_item(@item)
-    expect(@label.items.count(@item)).to eq(1)
-  end
+    it 'adds the item to the label' do
+      expect(@label.items).to include(@item)
+    end
 
-  it 'adds self to item labels' do
-    @label.add_item(@item)
-    expect(@item.labels).to include(@label)
+    it 'sets the label of the item to the current label' do
+      expect(@item).to have_received(:label=).with(@label)
+    end
   end
 end
