@@ -42,6 +42,21 @@ CREATE TABLE game(
     FOREIGN KEY(item_id) REFERENCES items(id)
 );
 
+CREATE TABLE genre (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(200)
+);
+
+CREATE TABLE music_album (
+    id INTEGER PRIMARY KEY,
+    on_spotify BOOLEAN,
+    publish_date DATE,
+    archived BOOLEAN,
+    genre_id INTEGER,
+    FOREIGN KEY (genre_id) REFERENCES genre(id),
+    genre_name VARCHAR(200)
+);
+
 CREATE INDEX idx_book_item_id ON book(item_id);
 CREATE INDEX idx_item_label_id ON item(label_id);
 
