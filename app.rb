@@ -335,7 +335,4 @@ class App
   end
 end
 
-app = App.new
-app.load_data
 
-app.save_data
