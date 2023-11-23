@@ -90,7 +90,7 @@ Clone this repository to your desired folder:
   git clone https://github.com/sadaf-Daneshgar/ruby-_group_capstone.git
 ```
 
-### usage
+### Usage
 
 - To run the project, execute the following command:
 
