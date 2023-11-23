@@ -1,7 +1,7 @@
 
 <div align="center">
 
-  <h1><b>Ruby Catalog</b></h1>
+  <h1><b>Ruby group capstone - Catalog of my things</b></h1>
 
 </div>
 
