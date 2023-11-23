@@ -1,45 +1,45 @@
 
+<div align="center">
+
+  <h1><b>Ruby Catalog</b></h1>
+
+</div>
+
 <!-- TABLE OF CONTENTS -->
 
-# 📗 Table of Contents
+## 📗 Table of Contents
 
-- [📖 About the Project](#about-project)
-  - [🛠 Built With](#built-with)
-    - [Tech Stack](#tech-stack)
-    - [Key Features](#key-features)
-- [🚀 Live Demo ](#-live-demo-)
-- [💻 Getting Started](#getting-started)
-  - [Setup](#setup)
-  - [Prerequisites](#prerequisites)
-  - [Usage](#usage)
-  - [Run tests](#run-tests)
-  - [Deployment](#triangular_flag_on_post-deployment)
-- [👥 Authors](#authors)
-- [🔭 Future Features](#future-features)
-- [🤝 Contributing](#contributing)
-- [⭐️ Show your support](#support)
-- [🙏 Acknowledgements](#acknowledgements)
-- [📝 License](#license)
+- [📖 Ruby Catalog](#-ruby-catalog)
+  - [🛠 Built With ](#-built-with-)
+    - [Tech Stack ](#tech-stack-)
+    - [Key Features ](#key-features-)
+  - [🚀 Live Demo ](#-live-demo-)
+  - [💻 Getting Started ](#-getting-started-)
+    - [Prerequisites](#prerequisites)
+    - [usage](#usage)
+    - [Setup](#setup)
+    - [Install](#install)
+  - [👥 Author ](#-author-)
+  - [🔭 Future Features ](#-future-features-)
+  - [🤝 Contributing ](#-contributing-)
+  - [⭐️ Show your support ](#️-show-your-support-)
+  - [🙏 Acknowledgments ](#-acknowledgments-)
+  - [📝 License ](#-license-)
 
 <!-- PROJECT DESCRIPTION -->
 
-# 📖 [ Catalog of my things ] <a name="about-project"></a>
+# 📖 Ruby Catalog<a name="about-project"></a>
 
-**[ Catalog of my things ]** It is a Ruby project that implements OOP principles like: abstraction, inhertance, polymorphism and encapsulation. It is a catalog of my things, where I can add, remove, update and view my things. It is a command line application that runs in IRB.
+[**Ruby Catalog**] It is a Ruby project that implements OOP principles like: abstraction, inhertance, polymorphism and encapsulation. It is a catalog of my things, where I can add, remove, update and view my things. It is a command line application that runs in IRB.
+
 
 ## 🛠 Built With <a name="built-with"></a>
-- ✅ SQL
-- ✅ Ruby
-- ✅ Linters
-- ✅ Rubocop
 
 ### Tech Stack <a name="tech-stack"></a>
 
 <details>
-  <summary>Language</summary>
-  <ul>
-    <li>Ruby</li>
-  </ul>
+  <summary>Client</summary>
+    <li><a href="https://www.ruby-lang.org/en/">Ruby</a></li>
 </details>
 
 <!-- Features -->
@@ -53,24 +53,21 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-## 🚀 Video Presentation Link <a name="live-demo"></a>
 
-See the live presentation <a href="https://www.youtube.com/watch?v=xzkJj8fOLSY">here</a>
+## 🚀 Live Demo <a name="live-demo"></a>
+
+- [Video Presentation Link](https://www.youtube.com/watch?v=xzkJj8fOLSY)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-**To get a local copy up and running, follow these steps.**
-
-1. Download or clone this [repostory](https://github.com/sadaf-Daneshgar/ruby-_group_capstone.git).
-2. Provide a modern web browser.
+To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
-**In order to run this project you need:**
+In order to run this project you need:
 
 - ✔ Ruby installed in your machine. you can download it from [here](https://www.ruby-lang.org/en/downloads/)
 - ✔ IDE or a code editor installed in your machine.
@@ -80,18 +77,20 @@ See the live presentation <a href="https://www.youtube.com/watch?v=xzkJj8fOLSY">
 - ✔ A professional editer such as [VS Code](https://code.visualstudio.com/download).
 - ✔ An Updated web browser such as Google Chrome, you can download it from [here](https://www.google.com/chrome/).
 
+```
+    ruby
+    bundler
+```
+
 ### Setup
 
-- Clone this [repository](https://github.com/sadaf-Daneshgar/school_library) to your desired folder:
+Clone this repository to your desired folder:
 
-- Example commands:
-
-```sh
-  cd [YOUR FOLDER]
+```bash
   git clone https://github.com/sadaf-Daneshgar/ruby-_group_capstone.git
 ```
 
-### Usage
+### usage
 
 - To run the project, execute the following command:
 
@@ -100,15 +99,24 @@ See the live presentation <a href="https://www.youtube.com/watch?v=xzkJj8fOLSY">
  git clone https://github.com/sadaf-Daneshgar/ruby-_group_capstone.git
 ```
 
-### Deployment
+### Install
 
-**This project is deployed by the author, no permission for deployment by any other client.**
+Install this project with:
+
+```bash
+  cd Ruby_Catalog
+  bundle install
+```
+
+It will install the required gemfile for running the project
+
+<!-- ### Usage -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
 
-## 👥 Authors <a name="authors"></a>
+## 👥 Author <a name="author"></a>
 
 👤 **Sadaf Daneshgar**
 
