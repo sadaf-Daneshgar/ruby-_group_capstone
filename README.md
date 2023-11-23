@@ -16,7 +16,7 @@
   - [🚀 Live Demo ](#-live-demo-)
   - [💻 Getting Started ](#-getting-started-)
     - [Prerequisites](#prerequisites)
-    - [usage](#usage)
+    - [Usage](#usage)
     - [Setup](#setup)
     - [Install](#install)
   - [👥 Author ](#-author-)
