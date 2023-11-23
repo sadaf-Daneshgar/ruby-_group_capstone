@@ -1,3 +1,1 @@
-
-[{"id":989,"on_spotify":true,"genre":{"id":599,"name":"Test1"},"published_date":"2020-11-01"},{"id":389,"on_spotify":false,"genre":{"id":353,"name":"Test2"},"published_date":"2023-11-04"},{"id":875,"on_spotify":false,"genre":{"id":540,"name":"Test3"},"published_date":"2020-11-09"},{"id":643,"on_spotify":true,"genre":{"id":263,"name":"Test4"},"published_date":"2023-11-07"},{"id":391,"on_spotify":true,"genre":{"id":494,"name":"Test5"},"published_date":"2019-11-08"}]
-
+[{"id":53,"on_spotify":true,"genre":{"id":878,"name":"Classic"},"published_date":"2010-11-11"},{"id":988,"on_spotify":true,"genre":{"id":891,"name":"Modern"},"published_date":"2019-11-11"}]

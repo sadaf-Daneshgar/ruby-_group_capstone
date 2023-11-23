@@ -6,8 +6,6 @@ class Item
 
   def initialize(publish_date, archived: false)
     @id = Random.rand(1..1000)
-    @genres = []
-    @source = []
     @publish_date = Date.parse(publish_date)
     @archived = archived
   end
@@ -18,6 +16,11 @@ class Item
 
   def author=(author)
     @authors << author unless @authors.include?(author)
+  end
+
+  def genre=(genre)
+    @genre = genre
+    genre.add_item(self) unless genre.items.include?(self)
   end
 
   def move_to_archive
