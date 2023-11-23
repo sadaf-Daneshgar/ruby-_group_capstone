@@ -7,6 +7,7 @@
   - [🛠 Built With](#built-with)
     - [Tech Stack](#tech-stack)
     - [Key Features](#key-features)
+- [🚀 Live Demo ](#-live-demo-)
 - [💻 Getting Started](#getting-started)
   - [Setup](#setup)
   - [Prerequisites](#prerequisites)
@@ -50,6 +51,12 @@
 - 🔰 **[ Add new games ]**
 - 🔰 **[ Add new music albums ]**
 - 🔰 **[ List all items added ]**
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## 🚀 Video Presentation Link <a name="live-demo"></a>
+
+See the live presentation <a href="[https://youtu.be/1P-Xl1SatpE](https://youtu.be/xzkJj8fOLSY?si=QC3N4-vMG81qOfWy)">here</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
