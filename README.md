@@ -56,7 +56,7 @@
 
 ## 🚀 Video Presentation Link <a name="live-demo"></a>
 
-See the live presentation <a href="[https://youtu.be/1P-Xl1SatpE](https://youtu.be/xzkJj8fOLSY?si=QC3N4-vMG81qOfWy)">here</a>
+See the live presentation <a href="https://www.youtube.com/watch?v=xzkJj8fOLSY">here</a>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
